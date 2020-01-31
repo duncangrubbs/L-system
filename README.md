@@ -11,5 +11,8 @@ The L-System generates strings through formal grammar production rules, and then
 2. Compile everything in `src` and then run `main` in Demo.java
 
 ### Demos
-![Stochastic Demo 1](./img/Stochastic1.png)
-![Stochastic Demo 2](./img/Stochastic2.png)
+Stochastic 1             |  Stochastic 2
+:-------------------------:|:-------------------------:
+![](./img/Stochastic1.png)  |  ![](./img/Stochastic2.png)
+
+While generated from the same algorithm ran twice, you can see the clear differences in the shape of the plants.
