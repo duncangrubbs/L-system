@@ -13,6 +13,6 @@ The L-System generates strings through formal grammar production rules, and then
 ### Demos
 Stochastic 1             |  Stochastic 2
 :-------------------------:|:-------------------------:
-![](./img/Stochastic1.png)  |  ![](./img/Stochastic2.png)
+![](./img/Stochastic1.jpg)  |  ![](./img/Stochastic2.jpg)
 
 While generated from the same algorithm ran twice, you can see the clear differences in the shape of the plants.
