@@ -16,18 +16,11 @@ public class Demo {
         rules.add(rule1);
         rules.add(rule2);
 
-        ArrayList<Character> al = new ArrayList<>();
-        al.add('F');
-        al.add('+');
-        al.add('-');
-        al.add('X');
-        al.add('[');
-        al.add(']');
-        LSystem l = new LSystem(al, "X", rules);
+        LSystem system = new LSystem("X", rules);
 
-        String t = l.generate( 7);
+        String genString = system.generate( 5);
 
-        return t;
+        return genString;
     }
 
     // More advanced tree.
@@ -41,19 +34,11 @@ public class Demo {
         rules.add(rule2);
         rules.add(rule3);
 
-        ArrayList<Character> alphabet = new ArrayList<>();
-        alphabet.add('F');
-        alphabet.add('+');
-        alphabet.add('-');
-        alphabet.add('X');
-        alphabet.add('Y');
-        alphabet.add('[');
-        alphabet.add(']');
-        LSystem l = new LSystem(alphabet, "F", rules);
+        LSystem system = new LSystem("F", rules);
 
-        String t = l.generate(5);
+        String genString = system.generate(5);
 
-        return t;
+        return genString;
     }
 
     // Tree to demo stochastic systems
@@ -67,24 +52,20 @@ public class Demo {
         rules.add(rule2);
         rules.add(rule3);
 
-        ArrayList<Character> al = new ArrayList<>();
-        al.add('F');
-        al.add('+');
-        al.add('-');
-        al.add('[');
-        al.add(']');
-        StochasticLSystem sl = new StochasticLSystem(al, "F", rules);
+        StochasticLSystem sls = new StochasticLSystem("F", rules);
 
-        String t = sl.generate(6);
+        String t = sls.generate(5);
         return t;
     }
+
 
     public static void main(String[] args) {
         String tree1 = Demo.Tree1();
         String tree2 = Demo.Tree2();
         String tree3 = Demo.Tree3();
 
-        LSystemInterpreter inter = new LSystemInterpreter(4, 22.5);
+        LSystemInterpreter inter = new LSystemInterpreter(10, 22.5);
+        // here you can change which demo tree is being displayed
         inter.interpret(tree3);
     }
 

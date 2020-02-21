@@ -12,7 +12,7 @@ public class Rule {
     /**
      * a -> b
      * @param a Initially character
-     * @param b Transformed character (could be string)
+     * @param b Transformed character (could be a string)
      */
     public Rule(String a, String b) {
         this.a = a;
@@ -22,7 +22,7 @@ public class Rule {
     /**
      * a -> b with probability p
      * @param a Initially character
-     * @param b Transformed character (could be string)
+     * @param b Transformed character (could be a string)
      * @param p Probability that the rule will be applied
      */
     public Rule(String a, String b, double p) {

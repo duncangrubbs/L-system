@@ -7,26 +7,23 @@ import java.util.ArrayList;
  */
 
 public class LSystem {
-    private ArrayList<Character> alphabet;
     private String axiom;
     private ArrayList<Rule> rules;
 
     /**
      * Formal implementation of an L-System
-     * @param alphabet List of valid characters in the system
      * @param axiom Starting character of the system
      * @param rules Set of rules to be applied when transforming strings
      *              in the system.
      */
-    public LSystem(ArrayList<Character> alphabet, String axiom, ArrayList<Rule> rules) {
-        this.alphabet = alphabet;
+    public LSystem(String axiom, ArrayList<Rule> rules) {
         this.axiom = axiom;
         this.rules = rules;
     }
 
     /**
      * Iteratively updates the axiom string according the rules
-     * Does process repeatedly
+     * of the L-System, and does this process repeatedly.
      * @param iterations Number of times to repeat the process of transforming the
      *                   current string according to the rules.
      * @return Fully transformed string.
@@ -38,15 +35,15 @@ public class LSystem {
             String transformed = "";
 
             for (int k = 0; k < current.length(); k++) {
-                boolean trans = false;
+                boolean charHasBeenTransformed = false;
                 for (Rule r : this.rules) {
                     if (r.applies(current.charAt(k))) {
-                        trans = true;
+                        charHasBeenTransformed = true;
                         transformed += r.getB();
                         break;
                     }
                 }
-                if (!trans) {
+                if (!charHasBeenTransformed) {
                     transformed += current.charAt(k);
                 }
             }

@@ -8,21 +8,18 @@ import java.util.Random;
  */
 
 public class StochasticLSystem extends LSystem {
-    private ArrayList<Character> alphabet;
     private String axiom;
     private ArrayList<Rule> rules;
 
     /**
      * Formal implementation of an L-System
-     * @param alphabet List of valid characters in the system
      * @param axiom Starting character of the system
      * @param rules Set of rules to be applied when transforming strings
      *              in the system.
      */
-    public StochasticLSystem(ArrayList<Character> alphabet, String axiom, ArrayList<Rule> rules) {
-        super(alphabet, axiom, rules);
+    public StochasticLSystem(String axiom, ArrayList<Rule> rules) {
+        super(axiom, rules);
 
-        this.alphabet = alphabet;
         this.axiom = axiom;
         this.rules = rules;
     }
@@ -49,41 +46,66 @@ public class StochasticLSystem extends LSystem {
      * weighted by their probabilities.
      * @return A chosen rule.
      */
-    public Rule chooseRule() {
+    public Rule chooseRule(ArrayList<Rule> rules) {
         double rnum = new Random().nextDouble();
-        double rsum = 0;
-        for (Rule r : this.rules) {
+        double rsum = 0.0;
+
+        /*
+        For every rule, if our random number is
+        between the current running sum value and
+        our rule probability, then chose that rule,
+        otherwise continue summing. This allows for
+        a weighted random choice of rules.
+        */
+        for (Rule r : rules) {
             if (rnum > rsum && rnum <= rsum + r.getP()) {
                 return r;
             }
             rsum += r.getP();
         }
-        return this.rules.get(0);
+        // by default return the first (applicable) rule
+        return rules.get(0);
     }
 
     /**
      * Iteratively updates the axiom string according the rules
-     * Does process repeatedly
+     * of the L-System, and does this process repeatedly.
      * @param iterations Number of times to repeat the process of transforming the
      *                   current string according to the rules.
      * @return Fully transformed string.
      */
     public String generate(int iterations) {
+        // begin with only the axiom string
         String current = this.axiom;
 
+        /*
+        Every iteration will generate a "transformed string"
+        by applying the rules to the "current" string.
+        At the end of the iteration, the "current" string is replaced
+        by the new "transformed" string and the process is repeated.
+         */
         for (int i = 0; i < iterations; i++) {
             String transformed = "";
 
+            /*
+            We iterate through every character, getting a list
+            of applicable rules and then randomly chose one rule
+            based on its weight (probability). Applying this rule
+            to the character, thus changing the string. If no rule
+            is applied, then the character is not changed but still
+            added to the "transformed" string.
+             */
             for (int k = 0; k < current.length(); k++) {
-                boolean trans = false;
-                ArrayList<Rule> apr = this.applicableRules(current.charAt(k));
+                boolean charHasBeenTransformed = false;
+                ArrayList<Rule> applicableRules = this.applicableRules(current.charAt(k));
 
-                if (!apr.isEmpty()) {
-                    trans = true;
-                    Rule r = this.chooseRule();
-                    transformed += r.getB();
+                if (!applicableRules.isEmpty()) {
+                    charHasBeenTransformed = true;
+                    Rule rule = this.chooseRule(applicableRules);
+                    // A -> B so we add B to the transformed string
+                    transformed += rule.getB();
                 }
-                if (!trans) {
+                if (!charHasBeenTransformed) {
                     transformed += current.charAt(k);
                 }
             }
