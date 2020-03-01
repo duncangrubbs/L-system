@@ -8,11 +8,7 @@ The L-System generates strings through formal grammar production rules, and then
 
 ### 👩‍💻How to Run
 1. Make sure you have Java Installed
-2. Compile everything in `src` and then run `main` in Demo.java
+2. `javac src/*.java`
+3. `java -cp src Demo`
 
-### Demos
-Stochastic 1             |  Stochastic 2
-:-------------------------:|:-------------------------:
-![](./img/Stochastic1.jpg)  |  ![](./img/Stochastic2.jpg)
-
-While generated from the same algorithm ran twice, you can see the clear differences in the shape of the plants.
+_See README.pdf for more info_
