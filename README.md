@@ -1,5 +1,5 @@
 # L-system
-> A Basic implementation of an L-System along with an interpreter written with the Turtle graphics library.
+> A basic implementation of an L-System along with an interpreter written with the Turtle graphics library.
 
 ### 📓About
 An [L-system](https://en.wikipedia.org/wiki/L-system) is a type of formal grammar used to create artificial plants (and more) in procedural content generation. This repository is a very simple implementation of an L-System and a Stochastic L-System generator in Java. There is also a 2D implementation of a graphical interpreter written with the `Turtle` graphics library.
